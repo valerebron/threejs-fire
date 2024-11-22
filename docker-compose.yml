@@ -1,0 +1,17 @@
+services:
+  threejs-fire:
+    image: node:18-alpine
+    container_name: threejs-fire
+    restart: unless-stopped
+    ports:
+      - $PORT:$PORT_EXPOSED
+    environment:
+      VIRTUAL_HOST: "${DOMAIN}"
+      LETSENCRYPT_HOST: "${DOMAIN}"
+      PUID: "${PUID}"
+      PGID: "${PGID}"
+
+networks:
+  default:
+    name: dockerweb
+    external: true
